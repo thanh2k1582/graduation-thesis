@@ -1,0 +1,55 @@
+{{#with page_fetch}}
+  <div class="wrap mt-4">
+    <div class="button flex-align-center button-width">
+        <a class="t-upper a-hover-w" href="/admin/inn/page/{{index}}">Làm mới dãy trọ</a>
+    </div>
+</div>
+{{/with}}
+<div class="shadow w-100 p-container pb-1 mt-4">
+{{#each posts}}
+<div class=" shadow bg-body rounded mb-4 p-tb-0 w-100">
+  <div class="card-body p-2 pl-4">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex flex-row align-items-center w-100">
+        <a href="/admin/inn/detail{{this.url_detail_page}}">
+            <div
+            style="
+            background-image: url('{{this.image}}');"
+            class="bg-i-inn"
+            >
+            </div>
+        </a>
+        <div class="ms-3 w-100">
+          <a href="/admin/inn/detail{{this.url_detail_page}}" class="a">
+            <h5>{{this.title}}</h5>
+          </a>
+          <div class="flex">
+            <p class="small mb-0">{{this.price}}</p>
+            <p class="small mb-0 ml-20px">{{this.acreage}}</p>
+            <p class="small mb-0 ml-20px">{{this.address}}</p>
+          </div>
+          <p>{{this.summary}}</p>
+          <div class="pl-0 flex w-100">
+            <div class="pl-0 flex flex-1">
+                <a class="nav-link dropdown-toggle pl-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{this.author_avatar}}" width="40" height="40" class="rounded-circle">
+                </a>
+                <div class="flex-align-center">
+                    <p class="mb-0">{{this.author_name}}</p>
+                </div>
+            </div>
+            <div class="flex-end mr-4">
+                <form action="/admin/inn/new-inn{{this.url_detail_page}}?page={{this.index}}&&author={{this.author_name}}&&avatar={{this.author_avatar}}&&description_short={{this.summary}}" method="POST">
+                    <div class="flex-align-center">
+                        <button type="submit" class="button">Duyệt trọ</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+</div>

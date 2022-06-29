@@ -1,0 +1,276 @@
+<div class="shadow border-radius overflow">
+  <div class="relative">
+    <div class="div-opacity position-absolute z-index-5">
+
+    </div>
+    <div class="absolute z-index-10 flex-column ">
+      <div>
+        <h1 class=" t-border-coder t-c-w t-fs " style="cursor: pointer" data-toggle="modal" data-target="#exampleModalCenter">ĐĂNG KÝ SỰ KIỆN</h1>
+      </div>
+      {{#with happeningEventData}}
+      <h2 class="mt-20">
+        <a href="/happening-event/{{title}}" class="t-border-coder-2 t-c-w ">{{title}}</a>
+      </h2>
+      {{/with}}
+    </div>
+    <div class="slide-container ">
+    <div class="slide-child-container relative ">
+      <div class="swiper mySwiper ">
+        <div class="swiper-wrapper">
+          {{#each image_names}}
+          <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/{{this}}')"></div>
+          {{/each}}
+        </div>
+        {{!-- <div class="swiper-button-next z-index-20"></div> --}}
+        {{!-- <div class="swiper-button-prev z-index-20"></div> --}}
+        <div class="swiper-pagination z-index-20"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<style>
+  .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+  .swiper-slide {
+    font-size: 18px;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 30px;
+  }
+  .swiper-slide-background {
+    background: #ffffff
+  }
+</style>
+{{!-- Nha tro --}}
+<div class="wrap mt-50 mb-20">
+  <div class="flex-align-center">
+    <a class="button-2">NHÀ TRỌ ĐÀ NẴNG</a>
+  </div>
+</div>
+
+<div class="shadow p-4">
+  <div class="w-100 t-c ">
+    <div class="w-100 slide-inn">
+    <div class="swiper mySwiper2">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide flex-column swiper-slide-background t-j pt-16">
+          {{!-- start --}}
+          {{#each inns}}
+          <div class=" shadow bg-body rounded mr-ml-10px mb-4 p-tb-0 w-100">
+            <div class="card-body p-2 pl-4">
+              <div class="d-flex justify-content-between">
+                <div class="d-flex flex-row align-items-center">
+                  <a href="/inns/{{this.id}}?title={{this.title}}">
+                      <div
+                      style="
+                      background-image: url('{{this.image_slide}}');"s
+                      class="bg-i-inn-home"
+                      >
+                      </div>
+                  </a>
+                  <div class="ms-3">
+                    <a href="/inns/{{this.id}}?title={{this.title}}" class="a">
+                      <h5>{{this.title}}</h5>
+                    </a>
+                    <div class="flex">
+                      <p class="small mb-0">{{this.price}}</p>
+                      <p class="small mb-0 ml-20px">{{this.acreage}}</p>
+                      <p class="small mb-0 ml-20px">{{this.address}}</p>
+                    </div>
+                    <p class="small mb-0">{{this.description_short}}</p>
+                    <div class="pl-0 flex">
+                      <div class="avatar-poster mb-1 overflow">
+                        <img src="{{this.avatar}}" alt="">
+                      </div>
+                      <div class="flex-align-center ml-2">
+                        <p class="small mb-0">{{this.author}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+          {{!-- end --}}
+        </div>
+      </div>
+      <div class="swiper-scrollbar2"></div>
+    </div>
+</div>
+  </div>
+  <div class="wrap mt-4">
+    <div class="button flex-align-center">
+      <a class=" t-upper" href="/all-inns">xem thêm</a>
+    </div>
+</div>
+</div>
+
+{{!-- Gioi thieu --}}
+<div class="wrap mt-50 mb-20">
+  <div class="flex-align-center">
+    <a class="button-2 t-upper">giới thiệu về hội</a>
+  </div>
+</div>
+<div class="shadow mb-1 bg-body rounded background-config flex-column p-4 mt-5 mb-5">
+  <h5 class="pt-8 t-c t-upper">Hội đồng hương</h5>
+  <h4 class="pb-1 t-c t-upper">Học sinh - Sinh viên huyện Bình Sơn tại Thành phố Đà Nẵng</h4>
+  <img src="/images/logo/LOGO.png" alt="" class="w-10">
+  <div class="w-75 t-c ">
+    <div class="w-100 slide-height" id="info">
+    <div class="swiper mySwiper2">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide flex-column swiper-slide-background t-j pt-0">
+          Có lẽ phụ huynh nào cũng từng xuất hiện trong bài văn của con mình với vẻ ngoài và tính tình hoàn toàn không giống mình nhưng lại rất giống nhau.
+
+Ngày mới ra trường, khi chấm bài kiểm tra tập làm văn lớp sáu với đề bài "kể lại một việc tốt em đã làm", tôi đã ngạc nhiên khi hầu như cả lớp chỉ làm có hai việc tốt, một là dẫn bà cụ qua đường, hai là nhặt được chiếc ví và trả lại người mất. <br>
+
+Điều khiến tôi không biết nên cười hay nên khóc là bà cụ trong bài nào cũng đứng ở ngã tư, cũng "tóc bạc phơ, dáng người gầy gầy, lưng cong cong, đôi mắt hiền từ". Chiếc ví nào cũng nhặt được trên đường đi học về, cũng "màu nâu đậm, hình vuông, bên trong có chứa nhiều giấy tờ quan trọng và một số tiền lớn".
+
+Chẳng lẽ cả lớp 40 em lại gặp đúng một bà cụ, nhặt được cùng một chiếc ví? Tất nhiên ai cũng biết là không thể. Đó là một minh chứng cho việc học sinh bị lệ thuộc vào văn mẫu.
+<br>
+Thực trạng trên ở các lớp nhỏ, lên đến các lớp lớn hơn, khi chuyển sang các dạng văn khó hơn như nghị luận xã hội, nghị luận văn học, đề bài cũng phong phú hơn. Các em không thể chỉ học thuộc một vài bài văn mẫu tả cha mẹ, thầy cô, việc tốt, kỷ niệm vui buồn nữa mà phải phân tích, trình bày quan điểm của mình về các sự việc, hiện tượng trong xã hội hoặc các tư tưởng, đạo lý, tác phẩm văn họ <br>
+
+Tưởng chừng văn mẫu sẽ không còn đất dụng võ ở các khối lớp lớn cấp hai, cấp ba, nhưng chúng vẫn chi phối rất nhiều khi học sinh học thuộc những mở bài với cấu trúc giới thiệu tác giả, tác phẩm, vấn đề nghị luận... Đối với đoạn thơ đó, câu chuyện đó, nhiều em biết cần phải thuộc được những câu văn phân tích có sẵn để dễ lấy điểm hơn.
+<br>
+Tôi từng đọc được bình luận của học trò: "Đề thi thì ghi nêu cảm nhận của em, nhưng đáp án lại chấm theo ý của thầy cô". Thực ra, không phải chúng tôi chấm theo ý của thầy cô mà là chấm theo khung đáp án của Bộ, và để có điểm, ý tứ trong bài văn của các em phải phù hợp với đáp án. Đa số học sinh đều lựa chọn cách nhanh nhất để làm được điều đó, đó là học từ văn mẫu. <br>
+
+Không phải đến thế hệ giáo viên chúng tôi, văn mẫu mới trở thành đề tài gây nhiều tranh cãi trong việc dạy và học. Văn mẫu có cả "công" và "tội".
+
+Văn mẫu trước hết là những bài văn hay. Đọc một bài văn hay, con người có thể nâng tầm nhận thức và thẩm mĩ, có thể nảy sinh những cảm xúc bồi đắp tâm hồn, được gợi cảm hứng để làm điều tốt đẹp. Học sinh có thể nhìn vào đó học hỏi được cách triển khai bài của mình, cách dẫn dắt ý, dùng từ ngữ, gạn lọc ý tâm đắc hoặc diễn đạt sáng tạo. Nó giúp ích rất nhiều cho khả năng viết của các em.
+        </div>
+      </div>
+      <div class="swiper-scrollbar2"></div>
+    </div>
+</div>
+  </div>
+  {{!-- button --}}
+  <div class="wrap mt-50" id="btn-content">
+    <button class="button" onclick="show()" id="btn">XEM TẤT CẢ</button>
+  </div>
+</div>
+
+<script>
+function show() {
+  document.getElementById("info").classList.remove('slide-height');
+  document.getElementById("btn").innerHTML = 'THU GỌN';
+  document.getElementById("btn").setAttribute('onclick', 'up()')
+}
+
+function up() {
+  document.getElementById("info").classList.add('slide-height');
+  document.getElementById("btn").innerHTML = 'XEM TẤT CẢ';
+  document.getElementById("btn").setAttribute('onclick', 'show()')
+}
+</script>
+
+{{!-- swiper --}}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 2000,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        effect: 'slide',
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+
+      var swiperScrollContainer = new Swiper(".mySwiper2", {
+        direction: "vertical",
+        slidesPerView: "auto",
+        freeMode: true,
+        scrollbar: {
+          el: ".swiper-scrollbar2",
+        },
+        mousewheel: true,
+      });
+</script>
+
+{{!-- modal --}}
+{{#with user}}	
+<div class="modal fade pt-0" id="exampleModalCenter" tabindex="1">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content c-color">
+      <div class="modal-header">
+        <button type="button" class="close d-flex align-items-center justify-content-center bg-c-b" data-dismiss="modal" aria-label="Close">
+          <i class="material-icons t-c-b z-index-100" style="font-size:24px" aria-hidden="true">close</i>
+        </button>
+      </div>
+      <div class="flex no-gutters bg-c-w p-4">
+        <div class="col-md-6 d-flex">
+          <div class="modal-body p-5 img d-flex text-center d-flex align-items-center bg-c-w">
+            <div class="text w-100">
+              <span class="icon-2 ion-ios-beer"></span>
+              <h5 class="c-modal">Hội đồng hương học sinh - sinh viên huyện Bình Sơn tại thành phố Đà Nẵng</h5>
+              <div class="icon">
+                <img src="/images/logo/LOGO.png" alt="" class="w-100">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex">
+          <div class="modal-body p-5 img d-flex align-items-center p-4 bg-c-w shadow">
+            <div class="text w-100 py-0 py-md-5 pb-0 pt-0">
+              <h3 class="mb-4 c-modal">Đăng ký sự kiện</h3>
+              <form action="register-event" method="POST" class="signup-form">
+                <div class="form-group mb-3 t-a-l c-modal">
+                  <label class="label c-modal" for="name">Họ và tên</label>
+                  <input type="text" class="form-control c-modal" style="color:#5eb7b7 !important; border-bottom: 1px solid #5eb7b7" placeholder="your name" value="{{name}}" name="name">
+                </div>
+                <div class="form-group mb-3 t-a-l">
+                  <label class="label c-modal" for="email">Email</label>
+                  <input type="text" class="form-control" placeholder="@gmail.com" value="{{email}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7"  name="email">
+                </div>
+                <div class="form-group mb-3 t-a-l">
+                  <label class="label c-modal" for="name">Ngày sinh</label>
+                  <input type="text" class="form-control" placeholder="" value="{{birthday}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7" name="birthday">
+                </div>
+                 <div class="form-group mb-3 t-a-l">
+                  <label class="label c-modal" for="name">Địa chỉ</label>
+                  <input type="text" class="form-control" placeholder="" value="{{address}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7" name="address">
+                </div>
+                <div class="form-group mb-3 t-a-l">
+                  <label class="label c-modal" for="name">Số điện thoại</label>
+                  <input type="text" class="form-control" placeholder="" value="{{phone_number}}"style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7" name="phoneNumber">
+                </div>
+                 <div class="form-group mb-3 t-a-l">
+                  <label class="label c-modal" for="name">Facebook</label>
+                  <input type="text" class="form-control" placeholder="" value="{{facebook}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7" name="facebook">
+                </div>
+                <div class="form-group mb-3 t-a-l">
+                  <label class="label c-modal" for="name">Zalo</label>
+                  <input type="text" class="form-control" placeholder="" value="{{zalo}}" style="color:#5eb7b7 !important ; border-bottom: 1px solid #5eb7b7" name="zalo">
+                </div>
+                
+                <div class="form-group">
+                  <button type="submit" class="form-control btn btn-primary rounded submit px-3">ĐĂNG KÝ</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/with}}
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>

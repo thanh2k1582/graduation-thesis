@@ -1,0 +1,89 @@
+<div class="shadow w-100 p-container pb-1">
+<form action="/admin/update-annual-event?id={{this.id}}" method="POST" enctype="multipart/form-data">
+{{#with data}}
+<div class="row bg-c-w">
+    <div class="w-100 t-align-center t-c">
+        <h3 class="t-upper">
+            <p id="id">{{this.title}}</p> 
+        </h3>
+        <p>Hội đồng hương <br>
+        Học sinh - Sinh viên huyện Bình Sơn tại thành phố Đà Nẵng
+        </p>
+    </div>
+    <div class="flex-align-center">
+        <div class="w-75">
+            <div class="border-side t-c t-j" id="textarea">
+                <p class="">
+                    {{this.description}}
+                </p>
+            </div>
+        </div>
+    </div>
+<div class="w-100">
+    <div class="video-container flex-align-start">
+        <iframe width="60%" height="332" src="https://www.youtube.com/embed/{{video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+</div>
+{{/with}}
+</form>
+</div>
+
+
+{{!--  --}}
+<script>
+      function replaceTag(){
+       {{!-- input --}}
+       var p = document.getElementById('id');
+       const title = p.innerHTML;
+
+       var input = document.createElement('input');
+       input.setAttribute('id',p.getAttribute('id'));
+       input.setAttribute('value', title);
+       input.setAttribute('style', 'width: 800px');
+       input.setAttribute('name', 'title');
+       {{!-- text area --}}
+       var t_a = document.getElementById('textarea');
+       var textarea = document.createElement('textarea');
+       textarea.setAttribute('id',p.getAttribute('textarea'));
+       textarea.setAttribute('name', 'description');
+       textarea.setAttribute('style', 'width: 800px; height: 500px');
+
+       {{!-- image --}}
+       var div_image = document.getElementById('div_image');
+
+       var input_file = document.createElement('input');
+       input_file.setAttribute('id', 'image_file');
+       input_file.setAttribute('name', 'uploaded_file');
+       input_file.setAttribute('type', 'file');
+        {{!-- button --}}
+       let button_group = document.getElementById('button_group');
+        button_group.removeChild(document.getElementById('button'));
+
+        var button_submit = document.createElement('button');
+       button_submit.setAttribute('type', 'submit');
+       button_submit.innerHTML= 'Click to submit';
+
+       {{!-- form cancel --}}
+       let div_container = document.getElementById('container');
+
+       let a_button_cancel = document.createElement('a');
+       a_button_cancel.setAttribute('href', `/admin/annual-event-detail?title=${div_container.getAttribute('value')}`);
+       a_button_cancel.innerHTML = 'Cancel'
+
+     // move all elements in the other container.
+        while(p.firstChild) {
+            input.appendChild(p.firstChild);
+        }
+        p.parentNode.replaceChild(input,p);
+
+        while(t_a.firstChild) {
+            textarea.appendChild(t_a.firstChild);
+        }
+        t_a.parentNode.replaceChild(textarea,t_a);
+
+        div_image.appendChild(input_file);
+        button_group.appendChild(button_submit);
+        div_container.appendChild(a_button_cancel);
+    }
+</script> 

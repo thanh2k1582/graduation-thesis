@@ -1,0 +1,37 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100 bg-c-w">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="/images/logo/LOGO.png"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 shadow p-modal">
+        <form method="POST" action="/admin/login">
+          <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0">ĐĂNG NHẬP TÀI KHOẢN QUẢN TRỊ VIÊN</p>
+          </div>
+
+          <!-- Email input -->
+          <div class="form-outline mb-4 mt-50 w-100">
+                <input  type="text" class="input-line w-100" placeholder="Nhập tài khoản quản trị viên" name="account"/>
+
+          </div>
+          <div class="form-outline mb-4 mt-50 w-100">
+                <input  type="password" class="input-line w-100" placeholder="Nhập mật khẩu" name="password"/>
+
+          </div>
+          <div class="form-outline mb-4 mt-50 w-100">
+                <input  type="password" class="input-line w-100" placeholder="Xác nhận mật khẩu" name="confirmPassword"/>
+
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2 flex-align-center mt-50">
+            <button type="submit" class="button button-width"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">ĐĂNG NHẬP</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

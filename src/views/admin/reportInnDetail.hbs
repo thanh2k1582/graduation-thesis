@@ -1,0 +1,264 @@
+  <style>
+    /* RESET RULES 
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+:root {
+  --lightgray: #efefef;
+  --blue: steelblue;
+  --white: #fff;
+  --black: rgba(0, 0, 0, 0.8);
+  --bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
+}
+
+.btn-group {
+  text-align: center;
+}
+
+.open-modal {
+  font-weight: bold;
+  background: var(--blue);
+  color: var(--white);
+  padding: 0.75rem 1.75rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--black);
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.35s ease-in;
+}
+
+.modal.is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-dialog {
+  position: relative;
+  max-width: 800px;
+  max-height: 80vh;
+  border-radius: 5px;
+  background: var(--white);
+  overflow: auto;
+  cursor: default;
+}
+
+.modal-dialog > * {
+  padding: 1rem;
+}
+
+.modal-header,
+.modal-footer {
+  background: var(--lightgray);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header .close-modal {
+  font-size: 1.5rem;
+}
+
+.modal p + p {
+  margin-top: 1rem;
+}
+
+
+/* SLIDE LEFT ANIMATION
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+[data-animation="slideInOutLeft"] .modal-dialog {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 0.5s var(--bounceEasing);
+}
+
+[data-animation="slideInOutLeft"].is-visible .modal-dialog {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.2s;
+}
+
+
+/* FOOTER
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-footer {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.page-footer span {
+  color: #e31b23;
+}
+  </style>
+<div class="shadow p-60 mt-20">
+{{#with post}}
+<div class="relative">
+  <div class="slide-container mr-ml-10px">
+  <div class="slide-child-container relative">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('{{image_slide}}')">
+        </div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')"></div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')"></div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')"></div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')"></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="ml-20px">
+        <div class="mt-4">
+        <h5 class="t-c">
+            {{title}}
+        </h5>
+        <div class="ml-20px">
+            <p class="p">
+            Địa chỉ: 
+            {{address}}
+            </p>
+            <p>Giá: {{price}} triệu/tháng</p>
+            <p>Diện tích: {{acreage}} m2</p>
+        </div>
+        </div>
+        <div>
+            <h5 class="t-c">Thông tin mô tả</h5>
+            <div class="ml-20px">{{{description}}}</div>
+        </div>
+        <h5 class="t-c">Địa điểm đăng tin: </h5>
+        <div class="ml-10">
+            <p >{{{postPlace}}}</p>
+        </div>
+        <h5 class="t-c">Thông tin liên hệ: </h5>
+        <div class="ml-10">
+            <p>{{{contact}}}</p>
+        </div>
+</div>
+{{/with}}
+<div class=" flex-align-center mt-50">
+  <button class="button-bg-green t-upper button-width border-button" href="#">BÁO CÁO PHẢN HỒI</button>
+</div>
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="col" class="w-10">STT</th>
+      <th scope="col" class="w-30">Email người phản hồi</th>
+      <th scope="col" class="w-30">Tên người phản hồi</th>
+      <th scope="col" class="w-30">Nội dung phản hồi</th>
+    </tr>
+  </thead>
+  <tbody id="tbody">
+    {{#each reports}}
+    <tr>
+      <th scope="row">01</th>
+      <td>
+          {{this.email}}
+      </td>
+      <td>
+          {{this.name}}
+      </td>
+      <td>
+          {{this.content}}
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<div class="flex mt-20">
+  <div class="flex-1">
+
+  </div>
+  <button class="button-bg-green2 t-upper button-width border-button" type="button" data-open="modal2">GỠ BÀI ĐĂNG</button>
+</div>
+</div>
+
+{{!-- swiper --}}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 500,
+        autoplay: {
+          delay: 500000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        effect: 'slide',
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+</script>
+
+{{#with post}}
+<div class="modal" id="modal2" data-animation="slideInOutLeft">
+  <div class="modal-dialog w-50">
+    <header class="modal-header bg-green-color t-c-w">
+      Xác nhận gỡ bỏ
+      <button class="close-modal border-none bg-green-color t-c-w" aria-label="close modal" data-close>
+        ✕  
+      </button>
+    </header>
+    <section class="modal-content border-none flex-align-center pb-4">
+        <a href="/admin/report/refuse?id={{this.id}}&&type=inn" class="w-100"><button class="button w-100 mt-4">Xác nhận</button></a>
+        <button class="button mt-4 w-100" data-close  aria-label="close modal">Hủy bỏ</button>
+    </section>
+  </div>
+</div>
+{{/with}}
+
+<script>
+  const openEls = document.querySelectorAll("[data-open]");
+  const closeEls = document.querySelectorAll("[data-close]");
+  const isVisible = "is-visible";
+
+  for (const el of openEls) {
+  el.addEventListener("click", function() {
+    const modalId = this.dataset.open;
+    document.getElementById(modalId).classList.add(isVisible);
+  });
+}
+
+for (const el of closeEls) {
+  el.addEventListener("click", function() {
+    this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+  });
+}
+
+document.addEventListener("click", e => {
+  if (e.target == document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible [data-close]").click();
+  }
+});
+
+document.addEventListener("keyup", e => {
+  // if we press the ESC
+  if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible [data-close]").click();
+  }
+});
+</script>

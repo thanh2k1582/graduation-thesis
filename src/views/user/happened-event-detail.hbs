@@ -1,0 +1,109 @@
+
+<style>
+    .container-div {
+        position: relative;
+        height: 460px;
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper {
+        width: 100%;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        height: calc((100% - 30px) / 2) !important;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+      .bg-i-slide-home {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+</style>
+{{#with happenedEventDetail}}
+<div class="t-c shadow p-120">
+    <div class=>
+      <h3>
+        <p>{{this.title}}</p> 
+    </h3>
+    </div>
+    <p>
+        Đơn vị tổ chức: Hội đồng hương học sinh - sinh viên huyện Bình Sơn tại thành phố Đà Nẵng
+        <br>
+        Thời gian: {{this.action_time}}
+        <br>
+        Địa điểm: {{this.place}}
+    </p>
+    <p>
+        {{this.description}}
+    </p>
+  {{/with}}
+
+    <div class="">
+        <div class="container-div">
+        <div class="swiper mySwiper bg-c-w">
+          <div class="swiper-wrapper">
+            {{#each image_names}}
+            <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/{{this}}')"></div>
+            {{/each}}
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        grid: {
+          rows: 2,
+        },
+        speed: 2000,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        effect: 'slide',
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>

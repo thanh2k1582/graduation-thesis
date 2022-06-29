@@ -1,0 +1,102 @@
+<div class='shadow w-100 p-container pb-1'>
+  {{#each sortedActivities}}
+    {{#if this.creator_id}}
+      <div class="container shadow p-2 mb-5 bg-body rounded mb-0 p-tb-0 mt-4">
+        <div class="card-body card-body  pl-4 w-100 p-0">
+          <div class="d-flex justify-content-between w-100">
+            <div class="d-flex flex-row align-items-center w-100">
+              <a href="/detail/{{this.creator_id}}/{{this.id}}">
+                  <div
+                  style="
+                  background-image: url('/images/{{this.imageShow}}');"
+                  class="bg-i-inn"
+                  >
+                  </div>
+              </a>
+              <div class="ms-3 flex-1">
+                <a href="/detail/{{this.creator_id}}/{{this.id}}" class="a">
+                  <h5>{{this.title}}</h5>
+                </a>
+                <div class="flex">
+                  <p class="small mb-0">Giá thuê: {{this.price}} triệu/tháng</p>
+                  <p class="small mb-0 ml-20px">Diện tích phòng: {{this.acreage}} m2</p>
+                  <p class="small mb-0 ml-20px">Địa chỉ: {{this.address}}</p>
+                </div>
+                <p>{{this.description}}</p>
+                <div class="pl-0 flex">
+                  <div class="flex-align-center w-100">
+                      <a class="nav-link dropdown-toggle pl-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <img src="{{this.avatar_link}}" width="40" height="40" class="rounded-circle">
+                      </a>
+                      <p class="mb-0">{{this.name}}</p>
+                      {{!--  --}}
+                      <div class="flex flex-1 flex-end">
+                              <form action='/admin/confirmed-inn/delete?id={{this.id}}' method='POST' class='flex-align-center'>
+                          <div class='flex-align-center'>
+                            <button type='submit' class='button'>Xóa bài đăng</button>
+                          </div>
+                        </form>
+                      </div>
+                      {{!--  --}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{else}}
+    <div class='shadow bg-body rounded p-tb-0 w-100 mt-4'>
+      <div class='card-body p-2 pl-4 w-100'>
+        <div class='d-flex justify-content-between w-100'>
+          <div class='d-flex flex-row align-items-center w-100'>
+            <a href='/admin/confirmed-inn?id={{this.id}}'>
+              <div
+                style="
+            background-image: url('{{this.image_slide}}');"
+                class='bg-i-inn'
+              >
+              </div>
+            </a>
+            <div class='ms-3 w-100'>
+              <a href='/admin/confirmed-inn?id={{this.id}}' class='a'>
+                <h6>{{this.title}}</h6>
+              </a>
+              <div class='flex'>
+                <p class='small mb-0'>Giá thuê: {{this.price}} triệu/tháng</p>
+                <p class='small mb-0 ml-20px'>Diện tích: {{this.acreage}}m2</p>
+                <p class='small mb-0 ml-20px'>Địa chỉ: {{this.address}}</p>
+              </div>
+              <p>{{this.description_short}}</p>
+              <div class='pl-0 flex'>
+                <div class='pl-0 flex'>
+                  <a
+                    class='nav-link dropdown-toggle pl-0'
+                    href='#'
+                    id='navbarDropdown'
+                    role='button'
+                    data-bs-toggle='dropdown'
+                    aria-expanded='false'
+                  >
+                    <img src='{{this.avatar}}' width='40' height='40' class='rounded-circle' />
+                  </a>
+                  <div class='flex-align-center'>
+                    <p class='mb-0'>{{this.author}}</p>
+                  </div>
+                </div>
+                <div class='flex-1 flex-end mr-4'>
+                  <form action='/admin/confirmed-inn/delete?id={{this.id}}' method='POST' class='flex-align-center'>
+                    <div class='flex-align-center'>
+                      <button type='submit' class='button'>Xóa bài đăng</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    {{/if}}
+  {{/each}}
+</div>

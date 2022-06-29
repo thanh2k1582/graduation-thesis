@@ -1,0 +1,155 @@
+<div class="shadow p-100 happening-event-height">
+  <div class="wrap mt-4">
+      <div class="button flex-align-center button-width">
+            <a href="/events" class="a-c">Thống kê sự kiện</a>
+      </div>
+  </div>
+  <table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="col" class="w-20">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+          <li class="nav-item dropdown flex-align-center">
+              <a class="nav-link dropdown-toggle p-0" href="#" id="fetch" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Năm tổ chức
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="fetch">
+                  {{#each years}}
+                    <li onclick="showEvent(this)"><a class="dropdown-item">{{this.year}}</a></li>
+                  {{/each}}
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="">Tất cả</a></li>
+              </ul>
+          </li>
+        </ul>
+      </th>
+      <th scope="col" class="w-40">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+          <li class="nav-item dropdown flex-align-center">
+              <a class="nav-link dropdown-toggle p-0" href="#" id="fetchEvent" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Loại sự kiện
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="fetchType">
+                  {{#each dataEvents}}
+                    <li onclick="showEventByType(this)"><a class="dropdown-item">{{this.title}}</a></li>
+                  {{/each}}
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="">Tất cả</a></li>
+              </ul>
+          </li>
+        </ul>
+      </th>
+      <th scope="col" class="w-40">Sự kiện</th>
+    </tr>
+  </thead>
+  <tbody id="tbody">
+    {{#each dataHappenEvents}}
+    <tr>
+      <th scope="row">{{this.action_time}}</th>
+      <td class="t-align-left">
+          {{this.typeEvent}}
+      </td>
+      <td class="t-align-left">
+          <a href="/events/action-year?year={{this.action_time}}&&event_name={{this.title}}">
+              {{this.title}}
+          </a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<p id="noEvent"></p>
+</div>
+
+<script>
+  const showEvent = async(e) => {
+      const yearEvent = e.childNodes[0].innerHTML
+
+      const ulId = document.getElementById('fetch');
+      const ulId2 = document.getElementById('fetchEvent');
+
+      ulId.innerHTML = yearEvent;
+
+      const data_filter = await fetch('http://localhost:3000/events/filterEvents',{
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ year: yearEvent, type: ulId2.innerHTML.trim()})
+      })
+      const events = await data_filter.json();
+      let eventTransformHtml = "";
+
+      events.map(event => {
+        eventTransformHtml += `<tr>
+                                <th scope="row">
+                                  ${event.action_time}
+                                </th>
+                                <td>
+                                  ${event.type}
+                                </td>
+                                <td>
+                                    <a href="/events/action-year?year=${event.action_time}&&event_name=${event.title}">
+                                        ${event.title}
+                                    </a>
+                                </td>
+                              </tr>`
+      })
+      const listEvent = document.getElementById("tbody");
+      const noEvent = document.getElementById("noEvent")
+      noEvent.innerHTML = '';
+      if(!eventTransformHtml) {
+        eventTransformHtml = '';
+        if (ulId2.innerHTML.trim() === 'Loại sự kiện') {
+            noEvent.innerHTML = `Năm <b>${yearEvent}</b> đã không có bất kì sự kiện nào được diễn ra hoặc chưa được cập nhật`
+        } else {
+            noEvent.innerHTML = `Năm <b>${yearEvent}</b> <b>${ulId2.innerHTML.trim()}</b> đã không được tổ chức hoặc chưa được cập nhật`
+        };
+      }
+      listEvent.innerHTML = eventTransformHtml;
+  }
+
+  const showEventByType = async(e) => {
+    const typeEvent = e.childNodes[0].innerHTML
+
+    const ulId = document.getElementById('fetch');
+    const ulId2 = document.getElementById('fetchEvent');
+
+    ulId2.innerHTML = typeEvent;
+
+    const data_filter = await fetch('http://localhost:3000/events/filterEventByType',{
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ year: ulId.innerHTML.trim(), type: typeEvent})
+      })
+      const events = await data_filter.json();
+      let eventTransformHtml = "";
+
+      events.map(event => {
+        eventTransformHtml += `<tr>
+                                <th scope="row">
+                                  ${event.action_time}
+                                </th>
+                                <td>
+                                  ${event.type}
+                                </td>
+                                <td>
+                                    <a href="/events/action-year?year=${event.action_time}&&event_name=${event.title}">
+                                        ${event.title}
+                                    </a>
+                                </td>
+                              </tr>`
+      })
+      const listEvent = document.getElementById("tbody");
+      const noEvent = document.getElementById("noEvent")
+      noEvent.innerHTML = '';
+      if(!eventTransformHtml) {
+        eventTransformHtml = '';
+        if (ulId.innerHTML.trim() === 'Năm tổ chức') {
+          noEvent.innerHTML = `Chương trình <b>${typeEvent}</b> chưa từng được tổ chức trước đây`
+        } else {
+          noEvent.innerHTML = `Năm <b>${ulId.innerHTML}</b> chương trình <b>${typeEvent}</b> chưa từng được tổ chức trước đây`
+        }
+      }
+      listEvent.innerHTML = eventTransformHtml;
+  }
+
+</script>

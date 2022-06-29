@@ -1,0 +1,31 @@
+version: "3.8"
+
+networks:
+  backend:
+    driver: bridge
+services:
+  mysql_server:
+    image: mysql:8.0
+    networks:
+      - backend
+    ports:
+      - 3306
+      - 3306:3306
+    environment:
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpassword
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdatabase
+      LANG: C.UTF-8
+  app:
+    build: ./
+    volumes:
+      - ./:usr/src/app
+    networks:
+      - backend
+    ports:
+      - 3000:3000
+    depends_on:
+      - mysql_server
+
+  

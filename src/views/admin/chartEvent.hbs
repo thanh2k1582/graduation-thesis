@@ -1,0 +1,125 @@
+<div class="wrap mt-50 mb-20">
+  <div class="flex-align-center button-width button a-hover-w cursor-no">
+    <a class="a-hover-w ">THỐNG KÊ NHÀ TRỌ</a>
+  </div>
+</div>
+<div class="shadow p-4 mb-4">
+    <div>
+        <canvas id="myChart2"></canvas>
+    </div>
+</div>
+<div class="wrap mt-50 mb-20">
+  <div class="flex-align-center button-width button a-hover-w cursor-no">
+    <a class="a-hover-w ">THỐNG KÊ SỰ KIỆN</a>
+  </div>
+</div>
+<div class="shadow p-4">
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script>
+  const labels = [
+    '2010',
+    '2011',
+    '2012',
+    '2013',
+    '2014',
+    '2015',
+    '2016',
+    '2017',
+    '2018',
+    '2019',
+    '2020',
+    '2021',
+    '2022'
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Thống kê người đăng ký sự kiện Họp mặt truyền thống qua các năm',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [122, 100, 105, 132, 120, 130, 160,180, 87, 99, 132, 78, 200],
+    }]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+</script>
+ <script>
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
+
+
+{{!--  --}}
+
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script>
+  const labels2 = [
+    'Thanh khê',
+    'Hải Châu',
+    'Cẩm Lệ',
+    'Liên Chiểu',
+    'Ngủ Hành Sơn',
+    'Sơn Trà',
+    'Huyện Hòa Vang',
+    'Huyện Hoàng Sa'
+  ];
+
+  const data2 = {
+  labels: labels2,
+  datasets: [{
+    label: 'Thống kê nhà trọ theo khu vực',
+    data: [65, 59, 80, 81, 56, 55, 40,20],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+    borderWidth: 1
+  }]
+};
+
+  const config2 = {
+  type: 'bar',
+  data: data2,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  },
+};
+</script>
+ <script>
+  const myChart2 = new Chart(
+    document.getElementById('myChart2'),
+    config2
+  );
+</script>
+ 
+ 

@@ -1,0 +1,61 @@
+<div class="shadow w-100 p-container pb-1">
+{{#if posts}}
+    {{#each posts}}
+      <div class="container shadow p-3 mb-5 bg-body rounded mb-0 p-tb-0 mt-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between w-100">
+            <div class="d-flex flex-row align-items-center w-100">
+              <a href="/detail/{{this.creator_id}}/{{this.id}}">
+                  <div
+                  style="
+                  background-image: url('/images/{{this.imageShow}}');"
+                  class="bg-i-inn"
+                  >
+                  </div>
+              </a>
+              <div class="ms-3 flex-1">
+                <a href="/detail/{{this.creator_id}}/{{this.id}}" class="a">
+                  <h5>{{this.title}}</h5>
+                </a>
+                <div class="flex">
+                  <p class="small mb-0">Giá thuê: {{this.price}} triệu/tháng</p>
+                  <p class="small mb-0 ml-20px">Diện tích phòng: {{this.acreage}} m2</p>
+                  <p class="small mb-0 ml-20px">Địa chỉ: {{this.address}}</p>
+                </div>
+                <p>{{this.description}}</p>
+                <div class="pl-0 flex">
+                  <div class="flex-align-center w-100">
+                      <a class="nav-link dropdown-toggle pl-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <img src="{{this.avatar_link}}" width="40" height="40" class="rounded-circle">
+                      </a>
+                      <p class="mb-0">{{this.name}}</p>
+                      {{!--  --}}
+                      <div class="flex flex-1 flex-end">
+                          {{!--  --}}
+                          <div class="wrap mt-4">
+                              <div class="button flex-align-center">
+                                    <a href="/{{this.creator_id}}/edit/{{this.id}}" class="a-c">Chỉnh sửa</a>
+                              </div>
+                          </div>
+                          {{!--  --}}
+                      </div>
+                      {{!--  --}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+{{else}}
+<div class="flex-align-center">
+    <h5 class="t-c">Bạn chưa đăng tải bất kì bài đăng phòng trọ nào !</h5>
+</div>
+{{/if}}
+  <div class="wrap mt-4">
+      <div class="button flex-align-center">
+            <a href="/create-inn" class="a-c">Tạo mới dãy trọ</a>
+      </div>
+  </div>
+</div>

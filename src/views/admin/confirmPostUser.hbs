@@ -1,0 +1,45 @@
+<div class="shadow w-100 p-container pb-1">
+{{#if posts}}
+{{#each posts}}
+<div class=" shadow bg-body rounded mb-4 p-tb-0 w-100">
+  <div class="card-body p-2 pl-4">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex flex-row align-items-center">
+        <a href="/admin/post/detail?id={{this.id}}">
+            <div
+            style="
+            background-image: url('/images/{{this.imageShow}}');"
+            class="bg-i-inn"
+            >
+            </div>
+        </a>
+        <div class="ms-3">
+          <a href="/admin/post/detail?id={{this.id}}" class="a">
+            <h5>{{this.title}}</h5>
+          </a>
+          <div class="flex">
+            <p class="small mb-0">Giá thuê: {{this.price}}</p>
+            <p class="small mb-0 ml-20px">Diện tích: {{this.acreage}}</p>
+            <p class="small mb-0 ml-20px">Địa chỉ: {{this.address}}</p>
+          </div>
+          <p>{{{this.description}}}</p>
+          <div class="pl-0 flex">
+            <a class="nav-link dropdown-toggle pl-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{{this.avatar_link}}" width="40" height="40" class="rounded-circle">
+            </a>
+            <div class="flex-align-center">
+              <p class="mb-0">{{this.name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+{{else}}
+<div class="t-c flex-align-center">
+    <span>KHÔNG CÓ BẤT KÌ BÀI ĐĂNG NÀO CẦN DUYỆT</span>
+</div>
+{{/if}}
+</div>

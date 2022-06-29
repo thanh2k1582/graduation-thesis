@@ -1,0 +1,58 @@
+<div class="">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      {{!-- ---- --}}
+        <div class="container">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-middle w-100">
+            <li class="nav-item align-middle">
+                <a href="#" class="navbar-brand">
+                  <img src="/images/logo/LOGO.png" height="56" alt="CoolBrand">
+                </a>
+            </li>
+            <li class="nav-item flex-align-center">
+                <a class="nav-link" href="/">Trang chủ</a>
+            </li>
+            <li class="nav-item dropdown flex-align-center">
+                <a class="nav-link " href="/all-inns" >
+                Trọ sinh viên
+                </a>
+            </li>
+            <li class="nav-item dropdown flex-align-center">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sự kiện hằng năm
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {{#each dataEvents}}
+                        <li><a class="dropdown-item" href="/events/{{this.title}}">{{this.title}}</a></li>
+                    {{/each}}
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/events">Sự kiện đã diễn ra</a></li>
+                </ul>
+            </li>
+            {{!-- login --}}
+            <li class="nav-item d-flex flex-align-center flex-1">
+              <div class="flex-1"></div>
+              {{#if googleId}}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-middle flex-end">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{#with user}}
+                          <img src="{{this.avatar_link}}" width="40" height="40" class="rounded-circle">
+                      {{/with}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/edit-profile">Trang cá nhân</a></li>
+                        <li><a class="dropdown-item" href="/manager/{{googleId}}">Quản lý bài đăng</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              {{else}}
+                    <a href="/auth/google" class="nav-item nav-link">Login</a>
+              {{/if}}
+            </li>
+          </ul>
+        </div>
+      {{!-- ---- --}}
+    </nav>
+</div>

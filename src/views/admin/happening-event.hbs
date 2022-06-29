@@ -1,0 +1,141 @@
+<style>
+    .container-div {
+        position: relative;
+        height: 460px;
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper {
+        width: 100%;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        height: calc((100% - 30px) / 2) !important;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+      .bg-i-slide-home {
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .w-160 {
+        width:160px
+      }
+</style>
+
+
+<div class="shadow p-4 pl-10">
+<div class="container flex">
+{{>siderBarHappeningEvent}}
+    {{!--  --}}
+    {{#with happeningEvent}}
+    <div class="col-10 p-4 shadow">
+<div class="t-c">
+    <div class="w-100 t-align-center mt-20">
+      <h3>
+        <span class="button-hover p-4" style="font-size: 20px">{{this.title}}</span> 
+      </h3>
+    </div>
+
+
+    <div>
+      <div class="mt-50 flex-align-center">
+        <div class="w-16">
+          <b>Đơn vị tổ chức</b><br>
+          <b>Thời gian</b><br>
+          <b>Địa điểm</b><br>
+        </div>
+        <div class="w-2">
+          <b>:</b><br>
+          <b>:</b><br>
+          <b>:</b><br>
+        </div>
+        <div class="mr-3">
+            <span>Hội đồng hương học sinh - sinh viên huyện Bình Sơn tại thành phố Đà Nẵng</span><br>
+            <span>{{this.action_time}}</span><br>
+            <span>{{this.place}}</span><br>
+        </div>
+      </p>
+      </div>
+      
+      <div class="mt-20 p-4">
+        <div class="pt-2 pb-2 border-bot-top t-j">
+            <p>
+              {{this.description}}
+            </p>
+        </div>
+      </div>
+    </div>
+{{/with}}
+   <div class="p-4">
+        <div class="container-div">
+        <div class="swiper mySwiper bg-c-w">
+          <div class="swiper-wrapper">
+            {{#each image_names}}
+            <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/{{this}}')"></div>
+            {{/each}}
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</div>
+</div>
+    </div>
+    {{!--  --}}
+</div>
+</div>
+
+
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    grid: {
+        rows: 2,
+    },
+    speed: 2000,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    spaceBetween: 30,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    effect: 'slide',
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    });
+</script>

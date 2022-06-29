@@ -1,0 +1,71 @@
+<div class="shadow p-60 mt-20">
+{{#with post}}
+<div class="relative">
+  <div class="slide-container mr-ml-10px">
+  <div class="slide-child-container relative">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('{{image_slide}}')">
+        </div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')"></div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')"></div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding2.jpeg')"></div>
+        <div class="swiper-slide bg-i-slide-home" style="background-image: url('/images/teambuilding.jpeg')"></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="ml-20px">
+        <div class="mt-4">
+        <h5 class="t-c">
+            {{title}}
+        </h5>
+        <div class="ml-20px">
+            <p class="p">
+            Địa chỉ: 
+            {{address}}
+            </p>
+            <p>Giá: {{price}} triệu/tháng</p>
+            <p>Diện tích: {{acreage}} m2</p>
+        </div>
+        </div>
+        <div>
+            <h5 class="t-c">Thông tin mô tả</h5>
+            <div class="ml-20px">{{{description}}}</div>
+        </div>
+        <h5 class="t-c">Địa điểm đăng tin: </h5>
+        <div class="ml-10">
+            <p >{{{postPlace}}}</p>
+        </div>
+        <h5 class="t-c">Thông tin liên hệ: </h5>
+        <div class="ml-10">
+            <p>{{{contact}}}</p>
+        </div>
+</div>
+{{/with}}
+{{!-- swiper --}}
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        speed: 500,
+        autoplay: {
+          delay: 500000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        effect: 'slide',
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>

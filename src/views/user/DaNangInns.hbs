@@ -1,0 +1,39 @@
+<div class="shadow w-100 p-container pb-1">
+{{#each inns}}
+<div class=" shadow bg-body rounded mb-4 p-tb-0 w-100 t-align-left">
+  <div class="card-body p-2 pl-4">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex flex-row align-items-center">
+        <a href="/inns/{{this.id}}?title={{this.title}}">
+            <div
+            style="
+            background-image: url('{{this.image_slide}}');"
+            class="bg-i-inn"
+            >
+            </div>
+        </a>
+        <div class="ms-3">
+          <a href="/inns/{{this.id}}?title={{this.title}}" class="a">
+            <h5>{{this.title}}</h5>
+          </a>
+          <div class="flex">
+            <p class="small mb-0">{{this.price}}</p>
+            <p class="small mb-0 ml-20px">{{this.acreage}}</p>
+            <p class="small mb-0 ml-20px">{{this.address}}</p>
+          </div>
+          <p class="mb-0">{{this.description_short}}</p>
+          <div class="pl-0 flex">
+            <a class="nav-link dropdown-toggle pl-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{{this.avatar}}" width="40" height="40" class="rounded-circle">
+            </a>
+            <div class="flex-align-center">
+              <p class="mb-0">{{this.author}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+</div>

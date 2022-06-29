@@ -1,0 +1,28 @@
+<div class="shadow w-100 p-container pb-1">
+{{#with data}}
+<div class="row bg-c-w">
+    <div class="w-100 t-align-center t-c">
+        <h3 class="t-upper">
+            <p>{{this.title}}</p> 
+        </h3>
+        <p>Hội đồng hương <br>
+        Học sinh - Sinh viên huyện Bình Sơn tại thành phố Đà Nẵng
+        </p>
+    </div>
+    <div class="flex-align-center">
+        <div class="w-75">
+            <div class="border-side t-c t-j">
+                <p class="">
+                    {{this.description}}
+                </p>
+            </div>
+        </div>
+    </div>
+<div class="w-100">
+    <div class="video-container flex-align-start">
+        <iframe width="60%" height="332" src="https://www.youtube.com/embed/{{video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+</div>
+{{/with}}
+</div>

@@ -1,0 +1,312 @@
+<style>
+/* RESET RULES 
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+:root {
+--lightgray: #efefef;
+--blue: steelblue;
+--white: #fff;
+--black: rgba(0, 0, 0, 0.8);
+--bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
+}
+
+.btn-group {
+text-align: center;
+}
+
+.open-modal {
+font-weight: bold;
+background: var(--blue);
+color: var(--white);
+padding: 0.75rem 1.75rem;
+margin-bottom: 1rem;
+border-radius: 5px;
+}
+
+.modal {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 1rem;
+background: var(--black);
+cursor: pointer;
+visibility: hidden;
+opacity: 0;
+transition: all 0.35s ease-in;
+}
+
+.modal.is-visible {
+visibility: visible;
+opacity: 1;
+}
+
+.modal-dialog {
+position: relative;
+max-width: 800px;
+max-height: 80vh;
+border-radius: 5px;
+background: var(--white);
+overflow: auto;
+cursor: default;
+}
+
+.modal-dialog > * {
+padding: 1rem;
+}
+
+.modal-header,
+.modal-footer {
+background: var(--lightgray);
+}
+
+.modal-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.modal-header .close-modal {
+font-size: 1.5rem;
+}
+
+.modal p + p {
+margin-top: 1rem;
+}
+
+
+/* SLIDE LEFT ANIMATION
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+[data-animation="slideInOutLeft"] .modal-dialog {
+opacity: 0;
+transform: translateX(-100%);
+transition: all 0.5s var(--bounceEasing);
+}
+
+[data-animation="slideInOutLeft"].is-visible .modal-dialog {
+opacity: 1;
+transform: none;
+transition-delay: 0.2s;
+}
+
+
+/* FOOTER
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-footer {
+position: absolute;
+bottom: 1rem;
+right: 1rem;
+}
+
+.page-footer span {
+color: #e31b23;
+}
+</style>
+<div class="shadow w-100 p-container p-100 t-align-left">
+    <div class="flex">
+    {{#if statusWaiting}}
+       <div class="alert alert-warning alert-dismissible fade show w-100 t-align-center">
+        <strong>Xin hãy đợi!</strong> Bài viết đang trong quá trình xử lý.
+      </div>
+    {{/if}}
+    {{#if statusSuccess}}
+      <div class="alert alert-success alert-dismissible fade show w-100 t-align-center">
+        <strong>Thành công !</strong> Bài viết đã được kiểm duyệt thành công.
+      </div>
+    {{/if}}
+    {{#if statusFailed}}
+      {{#with statusFailed}}
+        <div class="alert alert-danger alert-dismissible fade show w-100 t-align-center">
+          <strong>Đăng tải bài viết không thành công!</strong> Bài viết đã bị từ chối với lý do: 
+          <strong>{{reason}}</strong>
+        </div>
+      {{/with}}
+    {{/if}}
+    {{#if statusDrop}}
+        <div class="alert alert-danger alert-dismissible fade show w-100 t-align-center flex-align-center">
+          <strong>Bài viết đã bị gỡ bỏ!</strong> Hãy xem lý do: 
+          <div class="t-align-left ml-2">
+            {{#each statusDrop}}
+                <strong>- {{this.content}} <br> </strong>
+            {{/each}}
+          </div>
+        </div>
+    {{/if}}
+    
+  <div class="flex-1">
+  </div>
+</div>
+    {{#with post}}
+    <form action="/post/edit?id={{this.id}}" method="POST" enctype="multipart/form-data">
+    <div class="shadow p-4-20 mt-4">
+        <div class="form-group">
+            <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Thông tin cơ bản</h6></label>
+            <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Tiêu đề" name="title" value="{{this.title}}">
+            <div class="mt-20 flex">
+                <div class="w-48 ">
+                    <input type="text" class=" form-control" id="exampleInputPassword1" placeholder="Ex: 2.1                                                                            Triệu/Tháng" name="price" value="{{this.price}}">
+                </div>
+                <div class="w-48 ml-auto">
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ex: 20.1                                                                                          m2" name="acreage" value="{{this.acreage}}">
+                </div>                  
+            </div>
+            <div class="form-control mt-4 ">
+                <label for="" class="t-c">Đà Nẵng /</label>
+                <select name='county_name' id='cars' class='height-input t-c border-none'>
+                    <option value='{{this.county_name}}'>{{this.county_name}}</option>
+                    <option value='Hải Châu'>Hải Châu</option>
+                    <option value='Cẩm Lệ'>Cẩm Lệ</option>
+                    <option value='Thanh Khê'>Thanh Khê</option>
+                    <option value='Liên Chiểu'>Liên Chiểu</option>
+                    <option value='Ngũ Hành Sơn'>Ngũ Hành Sơn</option>
+                    <option value='Sơn Trà'>Sơn Trà</option>
+                    <option value='Hòa Vang'>Hòa Vang</option>
+                    <option value='Hoàng Sa'>Hoàng Sa</option>
+                </select>
+                <label for="" class="t-c">/</label>
+                <select name='ward_name' id='cars' class='height-input t-c border-none'>
+                    <option value='{{this.ward_name}}'>{{this.ward_name}}</option>
+                    <option value='Tam Thuận'>Tam Thuận</option>
+                    <option value='mercedes'>Mercedes</option>
+                    <option value='audi'>Audi</option>
+                </select>
+                <label for="" class="t-c">/</label>
+                <input type="text" class="height-input width-input border-none" id="exampleInputPassword1" placeholder="Ex: K92 H06/41 Đinh Tiên Hoàng" name="address" value="{{this.address}}">
+                
+            </div>
+        </div>
+    </div>
+    <div class="shadow p-4-20 mt-30">
+        <div class="form-group">
+            <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Thông tin mô tả</h6></label>
+            <textarea class="form-control mt-1"  name="" id="" cols="10" rows="5">{{this.description}}</textarea>
+        </div>
+    </div>
+    {{/with}}
+    {{#with user}}
+    <div class="shadow p-4-20 mt-30">
+        <div class="form-group">
+            <label for="exampleInputPassword1"><h6 class="t-c m-f-20 mb-0">Liên hệ</h6></label>
+            <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Tên" disabled value="{{this.name}}">
+            <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Facebook" disabled value="{{this.facebook}}">
+            <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Số điện thoại" disabled value="{{this.phone_number}}">
+            <input type="text" class="form-control mt-1" id="exampleInputPassword1" placeholder="Zalo" disabled value="{{this.zalo}}">
+        </div>
+    </div>
+    {{/with}}
+
+    <div class="shadow p-4-20 mt-30">
+        <div class="w-100 mt-4">
+        <div>
+        <input type="file" name="uploaded_file"  >
+        </div>
+        {{!--  --}}
+        <div class='flex'>
+            <div>
+              <label class='custom-file-upload'>
+                <input type='file' multiple name='uploaded_file' id='gallery-photo-add5' class='t-c' />
+                Thêm ảnh
+              </label>
+            </div>
+            <div class='flex-1 ml-20px image-container-height gallery pl-2 t-align-center gallery5' id="imageDelete2">
+                {{#each images}}
+                    <img src="/images/{{this}}" alt="" class="image-wh">
+                {{/each}}
+            </div>
+          </div>
+    </div>
+    </div>
+    <div class="flex-align-center">
+        <input type="submit" value="XÁC NHẬN CHỈNH SỬA BÀI ĐĂNG" class="mt-4 button flex-align-center button-width">
+</form>
+        <div class="wrap mt-4 button-width">
+            <button class="button flex-align-center button-width" type="button" data-open="modal1"> XÓA BÀI ĐĂNG </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img>'))
+                    .attr('src', event.target.result)
+                    .attr('class', 'image-wh')
+                    .appendTo(placeToInsertImagePreview);
+                };
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery-photo-add5').on('change', function() {
+        document.getElementById('imageDelete2').innerHTML = ''
+        imagesPreview(this, 'div.gallery5');
+    });
+});
+</script>
+
+{{!-- modal --}}
+{{#with post}}
+<form action="/delete-inn-post?id={{this.id}}" method="POST">
+<div class="modal" id="modal1" data-animation="slideInOutLeft">
+  <div class="modal-dialog w-50">
+    <header class="modal-header bg-green-color t-c-w">
+      Xác nhận xóa bài đăng #{{this.id}}
+      <button class="close-modal border-none bg-green-color t-c-w" aria-label="close modal" data-close>
+        ✕  
+      </button>
+    </header>
+    <section class="modal-content border-none flex-align-center">
+        <button class="button w-50">Xác nhận</button>
+        <button class="button mt-4 w-50" type="submit" data-close  aria-label="close modal">Hủy bỏ</button>
+    </section>
+  </div>
+</div>
+</form>
+{{/with}}
+
+<script>
+  const openEls = document.querySelectorAll("[data-open]");
+  const closeEls = document.querySelectorAll("[data-close]");
+  const isVisible = "is-visible";
+
+  for (const el of openEls) {
+  el.addEventListener("click", function() {
+    const modalId = this.dataset.open;
+    document.getElementById(modalId).classList.add(isVisible);
+  });
+}
+
+for (const el of closeEls) {
+  el.addEventListener("click", function() {
+    this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+  });
+}
+
+document.addEventListener("click", e => {
+  if (e.target == document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible [data-close]").click();
+  }
+});
+
+document.addEventListener("keyup", e => {
+  // if we press the ESC
+  if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible [data-close]").click();
+  }
+});
+</script>

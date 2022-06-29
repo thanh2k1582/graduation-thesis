@@ -1,0 +1,78 @@
+<div class="shadow p-4 pl-10 happening-event-height">
+<div class="container flex">
+{{>siderBarHappeningEvent}}
+        <div class="col-10 p-4 shadow">
+            {{#with happeningEventData}}
+            <div class="col-12">
+                <form method="POST" enctype="multipart/form-data" action="edit-happening-event?id={{this.id}}">
+                    <div class="form-group w-100 mt-20">
+                        <input type="text" class="mt-1 bottom-line w-100" id="exampleInputPassword1" placeholder="Tiêu đề sự kiện" name="title" value="{{this.title}}" disabled>
+                    </div>
+                    <div class="flex w-100">
+                        <div class="form-group mt-4 width-160">
+                            <input type="date" class="bottom-line mt-1 t-c" name="action_time" value="{{action_time}}">
+                        </div>
+                        <div class="form-group mt-4 ml-20px flex-1 w-100">
+                            <input type="text" class="bottom-line mt-1 w-100 pb-0 t-c" id="exampleInputPassword1" placeholder="Địa điểm" name="place" value="{{this.place}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group purple-border mt-4 w-100 mt-50 pb-2 border-bottom-color">
+                        <textarea class="border-none  textarea-2 w-100 t-c pb-3 overflow" id="exampleFormControlTextarea4" name="description">{{this.description}}</textarea>
+                    </div>
+
+                    {{!--  --}}
+                    {{/with}}
+                    <div class="flex">
+                        <div class="mt-4">
+                            <label class="custom-file-upload t-c">
+                            <input type="file" multiple name="uploaded_file" id="gallery-photo-add2" class="t-c"/>
+                            Thay đổi ảnh mới
+                            </label>
+                        </div>
+                        <div class="flex-1 form-control ml-20px image-container-height mt-4 gallery2" id="imageDelete">
+                            {{#each image_names}}
+                                <img src="/images/{{this}}" alt="" class="image-wh">
+                            {{/each}}
+                        </div>
+                    </div>
+                    <div class="wrap mt-4 w-100">
+                        <input type="submit" value="Xác nhận chỉnh sửa" class="button flex-align-center button-width a-none-line t-c-green">
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
+</div>
+
+<script>
+    $(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img>'))
+                    .attr('src', event.target.result)
+                    .attr('class', 'image-wh')
+                    .appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery-photo-add2').on('change', function() {
+        document.getElementById('imageDelete').innerHTML = ''
+        imagesPreview(this, 'div.gallery2');
+    });
+});
+</script>
+

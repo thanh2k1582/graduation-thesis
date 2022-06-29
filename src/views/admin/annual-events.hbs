@@ -1,0 +1,29 @@
+<div class="shadow p-100">
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên sự kiện</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {{#each dataEvents }}
+            <tr>
+                <th scope="row">{{this.index}}</th>
+                <td>
+                    <a href="annual-event-detail?title={{this.title}}" class="a-c">
+                    {{this.title}}
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <div class="wrap mt-4">
+        <div class="button flex-align-center">
+            <a   href="add-annual-event" class="a">Thêm mới</a>
+        </div>
+    </div>
+</div>
+

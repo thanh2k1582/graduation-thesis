@@ -1,0 +1,42 @@
+
+
+<div class="shadow p-4 pl-10 happening-event-height">
+<div class="container flex">
+{{>siderBarHappeningEvent}}
+        <div class="col-10 p-4 shadow">
+            {{#if statusMail}}
+            <div class="t-align-center">
+                <span class="t-c">Thư sự kiện dang diễn ra đã được gửi, cảm ơn bạn về sự cống hiến của mình</span>
+            </div>
+            <div class="flex-align-center">
+                <img src="/images/logo/LOGO.png" alt="" style="width:160px;height:160px">
+            </div>
+            {{else}}
+                <form method="POST" action="/admin/send-mail">
+                {{#with happeningEventData}}
+                    <div class="form-group w-100">
+                        <input type="text " class=" mt-1 w-100 bottom-line t-bold t-c" id="exampleInputPassword1" placeholder="Tiêu đề" name="subject" value="{{this.title}}">
+                    </div>
+                {{/with}}
+                <div class="ml-2 mt-20">
+                    <b class="ml-2 t-c mt-20">Thân gửi anh chị (auto) !</b>
+                </div>
+                <div class="form-group w-100">
+                    <textarea class="t-c w-100 bottom-line textarea" id="exampleFormControlTextarea4" oninput="auto_grow(this)" name="content">Nội dung tại đây...</textarea>
+                </div>
+
+                <div class="wrap mt-4">
+                    <input type="submit" value="Nhấn để gửi thư" class="button flex-align-center button-width">
+                </div>
+                </form>
+            {{/if}}
+    </div>
+</div>
+</div>
+
+<script>
+    function auto_grow(element) {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+}
+</script>
